@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Document(collection = "documents")
+@Document(collection = "item")
 @Data
 @NoArgsConstructor
 public class ItemDocument {
