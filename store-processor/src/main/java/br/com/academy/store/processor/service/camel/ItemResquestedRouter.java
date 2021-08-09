@@ -21,7 +21,7 @@ public class ItemResquestedRouter extends RouteBuilder {
 		.process(exchange -> {
 			ItemRequest item = JsonConverter.fromJson(exchange.getIn().getBody(String.class), ItemRequest.class);
 			item.setStatus("IN PROGRESSING");
-			item.setResquetedDate(LocalDateTime.now().toString());
+			item.setUpdateDate(LocalDateTime.now().toString());
 			exchange.getIn().setBody(JsonConverter.toJson(item));
 		})
 		.to("kafka:{{kafka.topic.producer.item.in.processing}}");
