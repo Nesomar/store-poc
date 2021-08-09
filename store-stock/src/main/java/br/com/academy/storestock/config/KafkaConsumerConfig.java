@@ -1,4 +1,4 @@
-package br.com.academy.store.manager.config;
+package br.com.academy.storestock.config;
 
 import java.util.HashMap;
 import java.util.Map;
