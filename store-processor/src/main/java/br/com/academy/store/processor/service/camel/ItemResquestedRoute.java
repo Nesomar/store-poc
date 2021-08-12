@@ -9,7 +9,7 @@ import br.com.academy.store.processor.service.kafka.converter.JsonConverter;
 import br.com.academy.store.processor.service.kafka.wrapper.ItemRequest;
 
 @Component
-public class ItemResquestedRouter extends RouteBuilder {
+public class ItemResquestedRoute extends RouteBuilder {
 
 	@Override
 	public void configure() throws Exception {
