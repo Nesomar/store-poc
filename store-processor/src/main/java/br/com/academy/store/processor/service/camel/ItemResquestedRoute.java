@@ -9,7 +9,7 @@ import br.com.academy.store.processor.service.kafka.converter.JsonConverter;
 import br.com.academy.store.processor.service.kafka.wrapper.ItemRequest;
 
 @Component
-public class ItemResquestedRouter extends RouteBuilder {
+public class ItemResquestedRoute extends RouteBuilder {
 
 	@Override
 	public void configure() throws Exception {
@@ -24,7 +24,11 @@ public class ItemResquestedRouter extends RouteBuilder {
 			item.setUpdateDate(LocalDateTime.now().toString());
 			exchange.getIn().setBody(JsonConverter.toJson(item));
 		})
-		.to("kafka:{{kafka.topic.producer.item.in.processing}}");
+		.multicast().parallelProcessing(true)
+		.to("spring-rabbitmq:{{spring.rabbitmq.exchange}}"
+				+ "?routingKey={{spring.rabbitmq.routingkey}}")
+		.to("kafka:{{kafka.topic.producer.item.in.processing}}")
+		.end();
 	}
 
 }
